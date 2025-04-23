@@ -11,7 +11,7 @@ import 'tippy.js/dist/tippy.css';
 const tableData = [
     {
         id: 1,
-        name: 'John Doe',
+        name: 'Saifuddin Munna',
         email: 'johndoe@yahoo.com',
         date: '10/08/2020',
         sale: 120,
