@@ -3,7 +3,7 @@ import React from "react";
 const Loading = () => {
   return (
     <div className="screen_loader animate__animated fixed inset-0 z-[60] grid place-content-center bg-[#fafafa] dark:bg-[#060818]">
-      <div className="animate-spin w-[200px] h-[200px]">
+      <div className="animate-pulse w-[200px] h-[200px]">
         <svg
           version="1.1"
           id="Layer_1"

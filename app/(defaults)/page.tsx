@@ -4,10 +4,6 @@ import React from 'react';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
-// export const metadata: Metadata = {
-//     title: 'Sales Admin',
-// };
-
 const tableData = [
     {
         id: 1,
@@ -62,7 +58,7 @@ const tableData = [
 const Sales = () => {
     return <div>
         starter page
-        <div className="table-responsive mb-5">
+        {/* <div className="table-responsive mb-5">
             <table>
                 <thead>
                     <tr>
@@ -111,7 +107,7 @@ const Sales = () => {
                     })}
                 </tbody>
             </table>
-        </div>
+        </div> */}
     </div>;
 };
 
