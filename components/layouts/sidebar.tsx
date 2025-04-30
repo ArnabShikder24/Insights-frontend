@@ -34,6 +34,97 @@ import IconMenuDocumentation from '@/components/icon/menu/icon-menu-documentatio
 import { usePathname } from 'next/navigation';
 import { getTranslation } from '@/i18n';
 
+const sidebarMenuItems = [
+    {
+        name: 'Reports',
+        key: 'reports',
+        icon: IconMenuChat,
+        subItems: [
+            { name: 'Down Time', href: '/reports/down-time' },
+        ],
+    },
+    {
+        name: 'Locations',
+        key: 'locations',
+        icon: IconMenuChat,
+        subItems: [
+            { name: 'Locations Operator', href: '/locations/operator' },
+            { name: 'Location List', href: '/locations/list' },
+            { name: 'Add Or Edit', href: '/locations/add-or-edit' },
+        ],
+    },
+    {
+        name: 'Operator',
+        key: 'operator',
+        icon: IconMenuChat,
+        subItems: [
+            { name: 'Operator Operator', href: '/operator/operator' },
+            { name: 'Operator List', href: '/operator/list' },
+            { name: 'Add Or Edit', href: '/operator/add-or-edit' },
+        ],
+    },
+    {
+        name: 'Machine',
+        key: 'machine',
+        icon: IconMenuChat,
+        subItems: [
+            { name: 'Machine Operator', href: '/machine/operator' },
+            { name: 'Machine List', href: '/machine/list' },
+            { name: 'Add Or Edit', href: '/machine/add-or-edit' },
+        ],
+    },
+    {
+        name: 'IotDevice',
+        key: 'iotdevice',
+        icon: IconMenuChat,
+        subItems: [
+            { name: 'Device Operator', href: '/iotdevice/operator' },
+            { name: 'Device List', href: '/iotdevice/list' },
+            { name: 'Add Or Edit', href: '/iotdevice/add-or-edit' },
+        ],
+    },
+    {
+        name: 'Line',
+        key: 'line',
+        icon: IconMenuChat,
+        subItems: [
+            { name: 'Line Operator', href: '/line/operator' },
+            { name: 'Line List', href: '/line/list' },
+            { name: 'Add Or Edit', href: '/line/add-or-edit' },
+        ],
+    },
+    {
+        name: 'Status',
+        key: 'status',
+        icon: IconMenuChat,
+        subItems: [
+            { name: 'Status Operator', href: '/status/operator' },
+            { name: 'Status List', href: '/status/list' },
+            { name: 'Add Or Edit', href: '/status/add-or-edit' },
+        ],
+    },
+    {
+        name: 'Task',
+        key: 'task',
+        icon: IconMenuChat,
+        subItems: [
+            { name: 'Task Operator', href: '/task/operator' },
+            { name: 'Task List', href: '/task/list' },
+            { name: 'Add Or Edit', href: '/task/add-or-edit' },
+        ],
+    },
+    {
+        name: 'Task Detail',
+        key: 'taskdetail',
+        icon: IconMenuChat,
+        subItems: [
+            { name: 'Task Operator', href: '/task-detail/operator' },
+            { name: 'Task List', href: '/task-detail/list' },
+            { name: 'Add Or Edit', href: '/task-detail/add-or-edit' },
+        ],
+    },
+];
+
 const Sidebar = () => {
     const dispatch = useDispatch();
     const { t } = getTranslation();
@@ -47,6 +138,16 @@ const Sidebar = () => {
             return oldValue === value ? '' : value;
         });
     };
+
+    useEffect(() => {
+        const matchedMenu = sidebarMenuItems.find((menu) =>
+            menu.subItems.some((subItem) => pathname.startsWith(subItem.href))
+        );
+        if (matchedMenu) {
+            setCurrentMenu(matchedMenu.key);
+        }
+    }, [pathname]);
+    
 
     useEffect(() => {
         const selector = document.querySelector('.sidebar ul a[href="' + window.location.pathname + '"]');
@@ -81,7 +182,7 @@ const Sidebar = () => {
         const selector = document.querySelector('.sidebar ul a[href="' + window.location.pathname + '"]');
         selector?.classList.add('active');
     };
-
+    
     return (
         <div className={semidark ? 'dark' : ''}>
             <nav
@@ -108,32 +209,41 @@ const Sidebar = () => {
                             <li className="nav-item">
                                 <Link href="/" className="group">
                                     <div className="flex items-center">
-                                        <IconMenuChat className="shrink-0 group-hover:!text-primary" />
+                                        <IconMenuDashboard className="shrink-0 group-hover:!text-primary" />
                                         <span className="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">{t('dashboard')}</span>
                                     </div>
                                 </Link>
                             </li>
+                            
+                            {sidebarMenuItems.map((menu) => (
+                                <li className="menu nav-item" key={menu.key}>
+                                    <button
+                                        type="button"
+                                        className={`${currentMenu === menu.key ? 'active' : ''} nav-link group w-full`}
+                                        onClick={() => toggleMenu(menu.key)}
+                                    >
+                                        <div className="flex items-center">
+                                            <menu.icon className="shrink-0 group-hover:!text-primary" />
+                                            <span className="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">
+                                                {t(menu.name)}
+                                            </span>
+                                        </div>
+                                        <div className={currentMenu !== menu.key ? '-rotate-90 rtl:rotate-90' : ''}>
+                                            <IconCaretDown />
+                                        </div>
+                                    </button>
 
-                            <li className="menu nav-item">
-                                <button type="button" className={`${currentMenu === 'reports' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('reports')}>
-                                    <div className="flex items-center">
-                                        <IconMenuDashboard className="shrink-0 group-hover:!text-primary" />
-                                        <span className="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">{t('Reports')}</span>
-                                    </div>
-
-                                    <div className={currentMenu !== 'reports' ? '-rotate-90 rtl:rotate-90' : ''}>
-                                        <IconCaretDown />
-                                    </div>
-                                </button>
-
-                                <AnimateHeight duration={300} height={currentMenu === 'reports' ? 'auto' : 0}>
-                                    <ul className="sub-menu text-gray-500">
-                                        <li>
-                                            <Link href="/down-time">{t('Down Time')}</Link>
-                                        </li>
-                                    </ul>
-                                </AnimateHeight>
-                            </li>
+                                    <AnimateHeight duration={300} height={currentMenu === menu.key ? 'auto' : 0}>
+                                        <ul className="sub-menu text-gray-500">
+                                            {menu.subItems.map((subItem, index) => (
+                                                <li key={index}>
+                                                    <Link href={subItem.href}>{t(subItem.name)}</Link>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </AnimateHeight>
+                                </li>
+                            ))}
 
                             {/* <h2 className="-mx-4 mb-1 flex items-center bg-white-light/30 px-7 py-3 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">
                                 <IconMinus className="hidden h-5 w-4 flex-none" />
