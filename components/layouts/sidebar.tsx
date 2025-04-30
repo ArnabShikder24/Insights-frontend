@@ -257,7 +257,7 @@ const Sidebar = () => {
                                 </g>
                             </svg>
                             </div>
-                            <span className="align-middle text-1xl font-semibold ltr:ml-1.5 rtl:mr-1.5 dark:text-white-light lg:inline">Insights Automata</span>
+                            <span className="align-middle text-base font-semibold ltr:ml-1.5 rtl:mr-1.5 dark:text-white-light lg:inline">Insights Automata</span>
                         </Link>
 
                         <button
