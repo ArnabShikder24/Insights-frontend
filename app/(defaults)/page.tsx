@@ -285,7 +285,8 @@ const columnChart: any = {
             {/* Left Column: Table */}
             <div className="rounded-xl shadow p-4">
                 <h2 className="text-xl font-semibold mb-4">Alerts & Notifications</h2>
-            {/* Your table will go here */}
+                {/* Your table will go here */}
+                <div className="table-responsive">
                 <table>
                 <thead>
                     <tr>
@@ -310,6 +311,7 @@ const columnChart: any = {
                     })}
                 </tbody>
                 </table>
+                </div>
             </div>
 
             {/* Right Column: Graph */}
@@ -323,37 +325,39 @@ const columnChart: any = {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4">
             {/* Left Column: Table */}
             <div className="rounded-xl shadow p-4">
-                <h2 className="text-xl font-semibold mb-4">Real-Time Production</h2>
+                <h2 className="text-xl font-semibold mb-4">Task Completion</h2>
                 {/* Your graph will go here */}
                 <ReactApexChart series={columnChart.series} options={columnChart.options} className="rounded-lg bg-white dark:bg-black overflow-hidden" type="bar" height={300} />
             </div>
 
             {/* Right Column: Graph */}
             <div className="rounded-xl shadow p-4">
-                <h2 className="text-xl font-semibold mb-4">Alerts & Notifications</h2>
-            {/* Your table will go here */}
-            <table>
-                <thead>
-                    <tr>
-                    <th>Operator Name</th>
-                    <th>Machine ID</th>
-                    <th>Task Name</th>
-                    <th>Efficiency</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tableData3.map((data) => {
-                    return (
-                        <tr key={data.id}>
-                        <td>{data.operatorName}</td>
-                        <td>{data.machineId}</td>
-                        <td>{data.taskName}</td>
-                        <td>{data.efficiency}</td>
+                <h2 className="text-xl font-semibold mb-4">Operator Performance</h2>
+                {/* Your table will go here */}
+                <div className="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                        <th>Operator Name</th>
+                        <th>Machine ID</th>
+                        <th>Task Name</th>
+                        <th>Efficiency</th>
                         </tr>
-                    );
-                    })}
-                </tbody>
+                    </thead>
+                    <tbody>
+                        {tableData3.map((data) => {
+                        return (
+                            <tr key={data.id}>
+                            <td>{data.operatorName}</td>
+                            <td>{data.machineId}</td>
+                            <td>{data.taskName}</td>
+                            <td>{data.efficiency}</td>
+                            </tr>
+                        );
+                        })}
+                    </tbody>
                 </table>
+                </div>
             </div>
         </div>
 
