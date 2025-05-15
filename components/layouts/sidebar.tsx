@@ -1,5 +1,4 @@
 'use client';
-import PerfectScrollbar from 'react-perfect-scrollbar';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { toggleSidebar } from '@/store/themeConfigSlice';
@@ -33,6 +32,11 @@ import IconMenuAuthentication from '@/components/icon/menu/icon-menu-authenticat
 import IconMenuDocumentation from '@/components/icon/menu/icon-menu-documentation';
 import { usePathname } from 'next/navigation';
 import { getTranslation } from '@/i18n';
+import dynamic from 'next/dynamic';
+
+const PerfectScrollbar = dynamic(() => import('react-perfect-scrollbar'), {
+  ssr: false,
+});
 
 const sidebarMenuItems = [
     {
@@ -176,6 +180,10 @@ const Sidebar = () => {
             }
         }
     }, [pathname]);
+
+    if (typeof window === 'undefined') {
+        return null; // Prevent rendering on server
+    }
 
     const setActiveRoute = () => {
         let allLinks = document.querySelectorAll('.sidebar ul a.active');
