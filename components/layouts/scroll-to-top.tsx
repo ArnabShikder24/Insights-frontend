@@ -18,10 +18,12 @@ const ScrollToTop = () => {
     };
 
     useEffect(() => {
-        window.addEventListener('scroll', onScrollHandler);
-        return () => {
-            window.removeEventListener('onscroll', onScrollHandler);
-        };
+        if (typeof window !== 'undefined') {
+            window.addEventListener('scroll', onScrollHandler);
+            return () => {
+                window.removeEventListener('onscroll', onScrollHandler);
+            };
+        }
     });
 
     return (
