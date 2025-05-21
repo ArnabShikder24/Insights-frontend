@@ -1,12 +1,13 @@
 {
-    "name": "insights-automata-next",
+    "name": "vristo-next",
     "version": "0.1.0",
     "private": true,
-"scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start"
-},
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
     "dependencies": {
         "@emotion/react": "^11.10.6",
         "@headlessui/react": "^2.1.2",
@@ -15,20 +16,19 @@
         "@types/node": "^22.4.0",
         "@types/react": "18.3.10",
         "@types/react-dom": "^18.3.0",
-        "apexcharts": "^4.7.0",
         "eslint": "8.57.0",
         "eslint-config-next": "14.2.13",
         "i18next": "^23.13.0",
         "next": "14.2.13",
         "ni18n": "^1.0.5",
-        "react": "^18.3.1",
+        "react": "18.3.1",
         "react-animate-height": "^3.1.0",
-        "react-apexcharts": "^1.7.0",
-        "react-dom": "^18.3.1",
+        "react-dom": "18.3.1",
         "react-i18next": "^15.0.2",
         "react-perfect-scrollbar": "^1.5.8",
         "react-popper": "^2.3.0",
         "react-redux": "^9.1.2",
+        "typescript": "^5.3.3",
         "universal-cookie": "^7.2.0",
         "yup": "^1.4.0"
     },

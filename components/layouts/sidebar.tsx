@@ -144,16 +144,6 @@ const Sidebar = () => {
     };
 
     useEffect(() => {
-        const matchedMenu = sidebarMenuItems.find((menu) =>
-            menu.subItems.some((subItem) => pathname.startsWith(subItem.href))
-        );
-        if (matchedMenu) {
-            setCurrentMenu(matchedMenu.key);
-        }
-    }, [pathname]);
-    
-
-    useEffect(() => {
         const selector = document.querySelector('.sidebar ul a[href="' + window.location.pathname + '"]');
         if (selector) {
             selector.classList.add('active');
