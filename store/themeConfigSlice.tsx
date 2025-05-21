@@ -45,12 +45,10 @@ const themeConfigSlice = createSlice({
             } else if (payload === 'dark') {
                 state.isDarkMode = true;
             } else if (payload === 'system') {
-                if (typeof window !== 'undefined') {
-                    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                        state.isDarkMode = true;
-                    } else {
-                        state.isDarkMode = false;
-                    }
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    state.isDarkMode = true;
+                } else {
+                    state.isDarkMode = false;
                 }
             }
 

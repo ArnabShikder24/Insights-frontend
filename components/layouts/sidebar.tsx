@@ -154,19 +154,17 @@ const Sidebar = () => {
     
 
     useEffect(() => {
-        if (typeof window !== 'undefined') { 
-            const selector = document.querySelector('.sidebar ul a[href="' + window.location.pathname + '"]');
-            if (selector) {
-                selector.classList.add('active');
-                const ul: any = selector.closest('ul.sub-menu');
-                if (ul) {
-                    let ele: any = ul.closest('li.menu').querySelectorAll('.nav-link') || [];
-                    if (ele.length) {
-                        ele = ele[0];
-                        setTimeout(() => {
-                            ele.click();
-                        });
-                    }
+        const selector = document.querySelector('.sidebar ul a[href="' + window.location.pathname + '"]');
+        if (selector) {
+            selector.classList.add('active');
+            const ul: any = selector.closest('ul.sub-menu');
+            if (ul) {
+                let ele: any = ul.closest('li.menu').querySelectorAll('.nav-link') || [];
+                if (ele.length) {
+                    ele = ele[0];
+                    setTimeout(() => {
+                        ele.click();
+                    });
                 }
             }
         }
@@ -174,16 +172,10 @@ const Sidebar = () => {
 
     useEffect(() => {
         setActiveRoute();
-        if (typeof window !== 'undefined') { 
-            if (window.innerWidth < 1024 && themeConfig.sidebar) {
-                dispatch(toggleSidebar());
-            }
+        if (window.innerWidth < 1024 && themeConfig.sidebar) {
+            dispatch(toggleSidebar());
         }
     }, [pathname]);
-
-    if (typeof window === 'undefined') {
-        return null; // Prevent rendering on server
-    }
 
     const setActiveRoute = () => {
         let allLinks = document.querySelectorAll('.sidebar ul a.active');
@@ -191,10 +183,8 @@ const Sidebar = () => {
             const element = allLinks[i];
             element?.classList.remove('active');
         }
-        if (typeof window !== 'undefined') {
-            const selector = document.querySelector('.sidebar ul a[href="' + window.location.pathname + '"]');
-            selector?.classList.add('active');
-        }
+        const selector = document.querySelector('.sidebar ul a[href="' + window.location.pathname + '"]');
+        selector?.classList.add('active');
     };
     
     return (

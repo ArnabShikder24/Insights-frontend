@@ -41,34 +41,31 @@ const Header = () => {
     const { t, i18n } = getTranslation();
 
     useEffect(() => {
-        if (typeof window !== 'undefined') { 
-            const selector = document.querySelector('ul.horizontal-menu a[href="' + window.location.pathname + '"]');
-            if (selector) {
-                const all: any = document.querySelectorAll('ul.horizontal-menu .nav-link.active');
-                for (let i = 0; i < all.length; i++) {
-                    all[0]?.classList.remove('active');
-                }
-    
-                let allLinks = document.querySelectorAll('ul.horizontal-menu a.active');
-                for (let i = 0; i < allLinks.length; i++) {
-                    const element = allLinks[i];
-                    element?.classList.remove('active');
-                }
-                selector?.classList.add('active');
-    
-                const ul: any = selector.closest('ul.sub-menu');
-                if (ul) {
-                    let ele: any = ul.closest('li.menu').querySelectorAll('.nav-link');
-                    if (ele) {
-                        ele = ele[0];
-                        setTimeout(() => {
-                            ele?.classList.add('active');
-                        });
-                    }
+        const selector = document.querySelector('ul.horizontal-menu a[href="' + window.location.pathname + '"]');
+        if (selector) {
+            const all: any = document.querySelectorAll('ul.horizontal-menu .nav-link.active');
+            for (let i = 0; i < all.length; i++) {
+                all[0]?.classList.remove('active');
+            }
+
+            let allLinks = document.querySelectorAll('ul.horizontal-menu a.active');
+            for (let i = 0; i < allLinks.length; i++) {
+                const element = allLinks[i];
+                element?.classList.remove('active');
+            }
+            selector?.classList.add('active');
+
+            const ul: any = selector.closest('ul.sub-menu');
+            if (ul) {
+                let ele: any = ul.closest('li.menu').querySelectorAll('.nav-link');
+                if (ele) {
+                    ele = ele[0];
+                    setTimeout(() => {
+                        ele?.classList.add('active');
+                    });
                 }
             }
         }
-
     }, [pathname]);
 
     const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl';
